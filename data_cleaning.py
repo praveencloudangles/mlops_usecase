@@ -1,7 +1,7 @@
 print('sarted data cleaning')
 
 from data_analysis import df1
-import pandas as pd
+
 
 
 df2=df1.drop_duplicates()

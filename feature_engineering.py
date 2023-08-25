@@ -1,9 +1,9 @@
 print("started feature engineering")
 
-from data_visualization import df2
-import pandas as pd
+from datavisualization import df2
+# import pandas as pd
 from sklearn import preprocessing
-from sklearn.preprocessing import LabelEncoder
+# from sklearn.preprocessing import LabelEncoder
 
 
 string_columns=df2.select_dtypes(include=['object']).columns
