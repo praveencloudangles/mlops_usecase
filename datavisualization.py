@@ -3,6 +3,7 @@ print("started data visualization")
 from data_cleaning import df2
 import matplotlib.pyplot as plt
 import seaborn as sns
+# from matplotlib.backends.backend_pdf import PdfPages
 
 # sns.barplot(x='gender', y='age', data=df2)
 # plt.show()
@@ -16,32 +17,63 @@ import seaborn as sns
 # sns.scatterplot(x=df2["age"], y=df2["blood_glucose_level"], hue=df2["gender"], style=df2['blood_glucose_level'])
 # plt.show()
 
-import seaborn as sns
-import matplotlib.pyplot as plt
 
-# Example DataFrame
-# df2 = ...  # Your DataFrame here
 
-# List of plot specifications
-plot_specs = [
-    ('barplot', ['gender'], ['age']),
-    ('barplot', ['smoking_history'], ['HbA1c_level'], 'gender'),
-    ('scatterplot', ['age'], ['bmi'], 'gender'),
-    ('scatterplot', ['age'], ['blood_glucose_level'], 'gender', 'blood_glucose_level')
-]
+categ = []
+numer = []
+for col in df2.columns:
+    if df2[col].dtypes == object:
+        categ.append(col)
+    else:
+        numer.append(col)
 
-# Loop through plot specifications and create plots
-for spec in plot_specs:
-    plot_type, x_columns, y_columns = spec[:3]
-    hue_column = spec[3] if len(spec) > 3 else None
-    style_column = spec[4] if len(spec) > 4 else None
-    
-    plt.figure()
-    
-    if plot_type == 'barplot':
-        sns.barplot(x=x_columns[0], y=y_columns[0], data=df2, hue=hue_column)
-    elif plot_type == 'scatterplot':
-        sns.scatterplot(x=x_columns[0], y=y_columns[0], data=df2, hue=hue_column, style=style_column)
-    
-    plt.title(f'{plot_type.capitalize()} for {", ".join(x_columns)} vs {", ".join(y_columns)}')
+print(categ)
+print(numer)
+
+# Histogram plots for categerical values.
+
+for i in categ:
+    sns.histplot(df2[i])
     plt.show()
+
+
+# Count plot for categerical values.
+
+for i in categ:
+    sns.countplot(x=df2[i])
+    plt.show()
+
+# Distribution plots for numeric values.
+
+for i in numer:
+    plt.subplots(1,1, figsize=(8,4))
+    sns.histplot(x = df2[i])
+    plt.xlabel(i)
+plt.show()
+
+
+# Scatter plots for both numerical and categorical values.
+
+plt.scatter(x='gender', y='age', data=df2)
+plt.xlabel('gender')
+plt.ylabel('age')
+plt.show()
+
+plt.scatter(x='gender', y='smoking_history', data=df2)
+plt.xlabel('gender')
+plt.ylabel('smoking_history')
+plt.show()
+
+plt.scatter(x='gender', y='blood_glucose_level', data=df2)
+plt.xlabel('gender')
+plt.ylabel('blood_glucose_level')
+plt.show()
+
+
+# Box plots for numeric values.
+
+for num in numer:
+    plt.subplots(1,1, figsize=(5,5))
+    sns.boxplot(df2[num])
+    plt.xlabel(num)
+plt.show()
