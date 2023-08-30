@@ -30,50 +30,57 @@ for col in df2.columns:
 print(categ)
 print(numer)
 
-# Histogram plots for categerical values.
+# # Histogram plots for categerical values.
 
-for i in categ:
-    sns.histplot(df2[i])
-    plt.show()
-
-
-# Count plot for categerical values.
-
-for i in categ:
-    sns.countplot(x=df2[i])
-    plt.show()
-
-# Distribution plots for numeric values.
-
-for i in numer:
-    plt.subplots(1,1, figsize=(8,4))
-    sns.histplot(x = df2[i])
-    plt.xlabel(i)
-plt.show()
+# for i in categ:
+#     sns.histplot(df2[i])
+#     plt.show()
 
 
-# Scatter plots for both numerical and categorical values.
+# # Count plot for categerical values.
 
-plt.scatter(x='gender', y='age', data=df2)
-plt.xlabel('gender')
-plt.ylabel('age')
-plt.show()
+# for i in categ:
+#     sns.countplot(x=df2[i])
+#     plt.show()
 
-plt.scatter(x='gender', y='smoking_history', data=df2)
-plt.xlabel('gender')
-plt.ylabel('smoking_history')
-plt.show()
+# # Distribution plots for numeric values.
 
-plt.scatter(x='gender', y='blood_glucose_level', data=df2)
-plt.xlabel('gender')
-plt.ylabel('blood_glucose_level')
-plt.show()
+# for i in numer:
+#     plt.subplots(1,1, figsize=(8,4))
+#     sns.histplot(x = df2[i])
+#     plt.xlabel(i)
+# plt.show()
 
 
-# Box plots for numeric values.
+# # Scatter plots for both numerical and categorical values.
 
+# plt.scatter(x='gender', y='age', data=df2)
+# plt.xlabel('gender')
+# plt.ylabel('age')
+# plt.show()
+
+# plt.scatter(x='gender', y='smoking_history', data=df2)
+# plt.xlabel('gender')
+# plt.ylabel('smoking_history')
+# plt.show()
+
+# plt.scatter(x='gender', y='blood_glucose_level', data=df2)
+# plt.xlabel('gender')
+# plt.ylabel('blood_glucose_level')
+# plt.show()
+
+
+# Box plot for numerical values.
 for num in numer:
-    plt.subplots(1,1, figsize=(5,5))
-    sns.boxplot(df2[num])
+    plt.figure(figsize=(5,5))
+    sns.boxplot(data=df2, x=num)
+    plt.xlabel(num)
+plt.show()
+
+
+# violin plots for numeric values.
+for num in numer:
+    plt.figure(figsize=(5, 5))
+    sns.violinplot(data=df2, x=num)
     plt.xlabel(num)
 plt.show()
