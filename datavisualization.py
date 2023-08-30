@@ -27,8 +27,8 @@ for col in df2.columns:
     else:
         numer.append(col)
 
-print(categ)
-print(numer)
+# print(categ)
+# print(numer)
 
 # # Histogram plots for categerical values.
 
