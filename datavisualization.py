@@ -84,3 +84,11 @@ for num in numer:
     sns.violinplot(data=df2, x=num)
     plt.xlabel(num)
 plt.show()
+
+for x in numer:
+        q75,q25 = np.percentile(dataset.loc[:,x],[75,25])
+        intr_qr = q75-q25    
+        max = q75+(1.5*intr_qr)
+        min = q25-(1.5*intr_qr)    
+        dataset.loc[dataset[x] < min,x] = np.nan
+        dataset.loc[dataset[x] > max,x] = np.nan
